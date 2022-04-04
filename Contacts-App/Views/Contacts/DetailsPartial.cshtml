@@ -1,0 +1,23 @@
+﻿@model Contacts_App.Models.ContactViewModel
+
+<div class="col-4 p-3">
+	<div class="card mb-4">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">
+				First name: @Html.DisplayFor(model => model.FirstName)
+			</li>
+			<li class="list-group-item">
+				Last name: @Html.DisplayFor(model => model.LastName)
+			</li>
+			<li class="list-group-item">
+				E-mail: @Html.DisplayFor(model => model.Email)
+			</li>
+			<li class="list-group-item">
+				Phone number: @Html.DisplayFor(model => model.MobilePhone)
+			</li>
+			<li class="list-group-item">
+				Address: @Html.DisplayFor(model => model.Address)
+			</li>
+		</ul>
+	</div>
+</div>

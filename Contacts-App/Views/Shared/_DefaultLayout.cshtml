@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>@Page.Title</title>
 	@Scripts.Render("~/bundles/js")
 	@Styles.Render("~/bundles/css")
 	@RenderSection("head", required: false)
+	<title>@ViewBag.Title</title>
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-dark">

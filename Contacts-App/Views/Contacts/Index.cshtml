@@ -1,7 +1,26 @@
-﻿
+﻿@using Contacts_App.Models
+@model IList<ContactViewModel>
+
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = "Contacts - Home";
 }
 
 <h2>Contacts</h2>
+
+@Html.ActionLink(
+	linkText: "Create new Contact",
+	actionName: "Create",
+	controllerName: "Contacts",
+	routeValues: null,
+	htmlAttributes: new { @class = "btn btn-primary" }
+)
+
+<hr />
+
+<div class="row">
+	@foreach (ContactViewModel cvm in this.Model)
+	{
+		@Html.Partial("DetailsPartial", cvm)
+	}
+</div>
 
