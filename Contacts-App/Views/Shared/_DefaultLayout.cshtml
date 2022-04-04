@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>@Page.Title</title>
+	@Scripts.Render("~/bundles/js")
+	@Styles.Render("~/bundles/css")
+	@RenderSection("head", required: false)
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container-fluid">
+			@Html.ActionLink(
+				linkText: "Contacts",
+				controllerName: "Contacts",
+				actionName: "Index",
+				htmlAttributes: new { @class = "navbar-brand" },
+				routeValues: null)
+		</div>
+	</nav>
+
+	<div class="container">
+		@RenderBody()
+	</div>
+
+</body>
+</html>
