@@ -166,6 +166,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Dao\Factories\IRepositoryFactory.cs" />
+    <Compile Include="Dao\Factories\RepositoryFactory.cs" />
+    <Compile Include="Dao\Repositories\ApiContactRepository.cs" />
+    <Compile Include="Dao\Repositories\IContactsRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,6 +207,8 @@
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Contacts\Create.cshtml" />
     <Content Include="Views\Contacts\DetailsPartial.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Contacts\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

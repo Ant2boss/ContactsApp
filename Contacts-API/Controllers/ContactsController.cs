@@ -36,13 +36,13 @@ namespace Contacts_API.Controllers
 
 			if (ContactValidator.IsInvalidContact(contact))
 			{
-				return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+				return this.Request.CreateResponse(HttpStatusCode.NotAcceptable);
 			}
 
 			try
 			{
 				this._contactRepository.Add(contact);
-				return this.Request.CreateResponse(HttpStatusCode.OK);
+				return this.Request.CreateResponse(HttpStatusCode.Created);
 			}
 			catch (DuplicateEmailException)
 			{
@@ -51,14 +51,9 @@ namespace Contacts_API.Controllers
 		}
 
 		[HttpDelete]
-		public HttpResponseMessage Delete([FromBody] ContactDetails contact)
+		public HttpResponseMessage Delete(string email)
 		{
-			if (ContactValidator.IsInvalidContact(contact))
-			{
-				return this.Request.CreateResponse(HttpStatusCode.BadRequest);
-			}
-
-			this._contactRepository.Delete(contact);
+			this._contactRepository.Delete(email);
 			return this.Request.CreateResponse(HttpStatusCode.OK);
 		}
 

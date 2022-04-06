@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Contacts_App.Api
 {
+	/// <summary>
+	/// Handles communication with Contacts Endpoint.
+	/// </summary>
 	public interface IContactsApi
 	{
 
@@ -14,13 +17,13 @@ namespace Contacts_App.Api
 		/// Adds the Contact to the remote API endpoint.
 		/// </summary>
 		/// <param name="contact">Contact to add.</param>
-		void Add(ContactDetails contact);
+		bool Add(ContactDetails contact);
 
 		/// <summary>
 		/// Deletes the contact from the remote API endpoint.
 		/// </summary>
-		/// <param name="contact">Contact to remove.</param>
-		void Delete(ContactDetails contact);
+		/// <param name="email">Email of contact to remove.</param>
+		void Delete(string email);
 
 		/// <summary>
 		/// Gets the list of Contacts from the remote API endpoint.

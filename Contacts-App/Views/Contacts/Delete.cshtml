@@ -1,0 +1,50 @@
+﻿@model Contacts_App.Models.ContactViewModel
+
+@{
+	ViewBag.Title = "Contacts - Delete";
+}
+
+<h2>Contacts - Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<hr />
+<div>
+	<div class="col-lg-4 p-3">
+		<div class="card mb-4">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					First name: @Html.ValueFor(model => model.FirstName)
+				</li>
+				<li class="list-group-item">
+					Last name: @Html.ValueFor(model => model.LastName)
+				</li>
+				<li class="list-group-item">
+					E-mail: @Html.ValueFor(model => model.Email)
+				</li>
+				<li class="list-group-item">
+					Phone number: @Html.ValueFor(model => model.MobilePhone)
+				</li>
+				<li class="list-group-item">
+					Address: @Html.ValueFor(model => model.Address)
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-actions no-color">
+			<input type="submit" value="Delete" class="btn btn-danger" />
+			|
+			@Html.ActionLink(
+				linkText: "Back to List",
+				actionName: "Index",
+				controllerName: "Contacts",
+				routeValues: null,
+				htmlAttributes: new { @class = "btn btn-outline-warning" }
+			)
+		</div>
+	}
+</div>

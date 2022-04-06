@@ -7,7 +7,7 @@ namespace Contacts_App.Api.Factories
 {
 	public class ApiFactory : IApiFactory
 	{
-		private const string ENDPOINT_URL = "http://localhost:61436/api/Contacts";
+		private const string ENDPOINT_URL = "http://localhost:61436/api/";
 
 		public static IApiFactory GetFactory()
 		{
@@ -20,7 +20,7 @@ namespace Contacts_App.Api.Factories
 
 		public IContactsApi GetContactsApi()
 		{
-			return new ContactsApi(ENDPOINT_URL);
+			return new ContactsApi(ENDPOINT_URL + "Contacts");
 		}
 	}
 }

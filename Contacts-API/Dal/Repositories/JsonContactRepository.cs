@@ -38,15 +38,17 @@ namespace Contacts_API.Dal.Repositories
 			throw new DuplicateEmailException($"{contact.Email} already exists in repository!");
 		}
 
-		public void Delete(ContactDetails contact)
+		public void Delete(string contact)
 		{
-			if (ContactValidator.IsInvalidContact(contact))
+			ISet<ContactDetails> contactsSet = this._LoadContactsList();
+
+			ContactDetails contactDetails = contactsSet.FirstOrDefault(cd => cd.Email.Equals(contact));
+			if (contactDetails is null)
 			{
-				throw new InvalidOperationException();
+				return;
 			}
 
-			ISet<ContactDetails> contactsSet = this._LoadContactsList();
-			contactsSet.Remove(contact);
+			contactsSet.Remove(contactDetails);
 			this._SaveContactsList(contactsSet);
 		}
 
@@ -64,7 +66,7 @@ namespace Contacts_API.Dal.Repositories
 			{
 				string listOfContacts = File.ReadAllText(this._jsonFilePath);
 				object value = JsonConvert.DeserializeObject<ISet<ContactDetails>>(listOfContacts);
-				existingContacts =  value as ISet<ContactDetails>;
+				existingContacts = value as ISet<ContactDetails>;
 			}
 
 			return existingContacts;

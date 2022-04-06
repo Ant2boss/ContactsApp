@@ -22,9 +22,9 @@ namespace Contacts_API.Dal.Repositories
 		/// Removes the Contact from the repositroy.
 		/// If no such contact exists, nothing is removed.
 		/// </summary>
-		/// <param name="contact">Contact to remove.</param>
+		/// <param name="email">Email of the contact to remove.</param>
 		/// <exception cref="InvalidOperationException" />
-		void Delete(ContactDetails contact);
+		void Delete(string email);
 
 		/// <summary>
 		/// List of all the Contacts in the repository.

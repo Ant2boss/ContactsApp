@@ -17,10 +17,7 @@ namespace Contacts_API.Validators
 				|| string.IsNullOrEmpty(contact.FirstName)
 				|| string.IsNullOrEmpty(contact.LastName)
 				|| string.IsNullOrEmpty(contact.Email)
-				|| string.IsNullOrEmpty(contact.Address)
-				|| string.IsNullOrEmpty(contact.MobilePhone)
-				|| BasicValidators.IsValidEmail(contact.Email) == false
-				|| BasicValidators.IsValidAddress(contact.Address) == false;
+				|| BasicValidators.IsValidEmail(contact.Email) == false;
 		}
 	}
 }

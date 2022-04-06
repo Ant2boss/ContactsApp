@@ -31,11 +31,8 @@ namespace Contacts_App.Models
 		[RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", ErrorMessage = "Invalid email address")]
 		public string Email { get; set; }
 
-		[Required(ErrorMessage = "Mobile phone is requiered")]
 		public string MobilePhone { get; set; }
 
-		[Required(ErrorMessage = "Address is requiered")]
-		[RegularExpression(@"[\w',-\\/.\s]", ErrorMessage = "Invalid address")]
 		public string Address { get; set; }
 
 		public ContactDetails ToContactDetails()

@@ -14,9 +14,5 @@ namespace Contacts_Data.Validators
 			return Regex.IsMatch(email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
 		}
 
-		public static bool IsValidAddress(string address)
-		{
-			return Regex.IsMatch(address, @"[\w',-\\/.\s]");
-		}
 	}
 }

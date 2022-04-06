@@ -1,6 +1,6 @@
 ﻿@model Contacts_App.Models.ContactViewModel
 
-<div class="col-4 p-3">
+<div class="col-lg-4 p-3">
 	<div class="card mb-4">
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item">
@@ -17,6 +17,15 @@
 			</li>
 			<li class="list-group-item">
 				Address: @Html.DisplayFor(model => model.Address)
+			</li>
+			<li class="list-group-item">
+				@Html.ActionLink(
+					linkText: "Delete",
+					controllerName: "Contacts",
+					actionName: "Delete",
+					routeValues: new { contactEmail = Model.Email },
+					htmlAttributes: new { @class = "btn btn-outline-danger" }
+				)
 			</li>
 		</ul>
 	</div>

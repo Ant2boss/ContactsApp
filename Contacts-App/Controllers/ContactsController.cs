@@ -1,5 +1,7 @@
 ﻿using Contacts_App.Api;
 using Contacts_App.Api.Factories;
+using Contacts_App.Dao.Factories;
+using Contacts_App.Dao.Repositories;
 using Contacts_App.Models;
 using Contacts_Data.Models;
 using System;
@@ -15,20 +17,17 @@ namespace Contacts_App.Controllers
 {
 	public class ContactsController : Controller
 	{
-		private readonly IContactsApi _contactsApi;
+		private readonly IContactsRepository _contactsRepository;
 
 		public ContactsController()
 		{
-			this._contactsApi = ApiFactory.GetFactory().GetContactsApi();
+			this._contactsRepository = RepositoryFactory.GetFactory().GetContactsRepository();
 		}
 
 		[HttpGet]
 		public ActionResult Index()
 		{
-			IList<ContactViewModel> contactViewModels = this._contactsApi
-				.GetList()
-				.Select(contact => ContactViewModel.CreateFromDetails(contact))
-				.ToList();
+			IReadOnlyList<ContactViewModel> contactViewModels = this._contactsRepository.GetList();
 
 			return View(contactViewModels);
 		}
@@ -48,10 +47,36 @@ namespace Contacts_App.Controllers
 				return this.View(contactViewModel);
 			}
 
-			ContactDetails contactDetails = contactViewModel.ToContactDetails();
-			this._contactsApi.Add(contactDetails);
+			if (this._contactsRepository.Add(contactViewModel))
+			{
+				return this.RedirectToAction("Index");
 
-			return this.RedirectToAction("Index");
+			}
+
+			this.ViewBag.Error = "Unable to add Contact, Email is taken.";
+
+			return this.View(contactViewModel);
 		}
+
+		[HttpGet]
+		public ActionResult Delete(string contactEmail)
+		{
+			if (String.IsNullOrEmpty(contactEmail))
+			{
+				throw new Exception("Invalid contact!");
+			}
+
+			ContactViewModel actualContact = this._contactsRepository.GetList().First(cvm => cvm.Email.Equals(contactEmail));
+			return this.View(actualContact);
+		}
+
+		[HttpPost]
+		[ActionName("Delete")]
+		public ActionResult DeleteConfirmed(string contactEmail)
+		{
+			this._contactsRepository.Delete(contactEmail);
+			return this.RedirectToAction("Index", "Contacts");
+		}
+
 	}
 }
